@@ -39,8 +39,14 @@ gulp.task('ts-compile', function () {
 
 gulp.task('ts-build', ['ts-lint', 'ts-compile']);
 
+gulp.task('html-build', function() {
+  return gulp.src([cfg.htmlIn])
+    .pipe(gulp.dest(cfg.htmlOut));
+});
+
 gulp.task('watch', function() {
   gulp.watch([cfg.tsIn], ['ts-build']);
+  gulp.watch([cfg.htmlIn], ['html-build']);
 });
 
 gulp.task('serve', ['watch'], function() {

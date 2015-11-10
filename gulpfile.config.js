@@ -14,6 +14,9 @@ var GulpConfig = function() {
   pub.tsIn = pub.src + '/ts/**/*.ts';
   pub.tsOut = pub.build + '/js';
 
+  pub.htmlIn = pub.src + '/html/**/*.html';
+  pub.htmlOut = pub.build;
+
   return pub;
 };
 
