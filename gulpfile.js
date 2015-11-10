@@ -5,7 +5,15 @@ var gulp = require('gulp'),
     tslint = require('gulp-tslint'),
     tsProject = tsc.createProject('./src/ts/tsconfig.json'),
     sourcemaps = require('gulp-sourcemaps'),
+    gls = require('gulp-live-server'),
+    concat = require('gulp-concat'),
     cfg = require('./gulpfile.config');
+
+gulp.task('libs-build', function () {
+  return gulp.src(cfg.libsIn)
+    .pipe(concat('libs.js'))
+    .pipe(gulp.dest(cfg.libsOut));
+});
 
 gulp.task('ts-lint', function () {
   return gulp.src(cfg.tsIn)
@@ -29,4 +37,19 @@ gulp.task('ts-compile', function () {
     .pipe(gulp.dest(cfg.tsOut));
 });
 
-gulp.task('default', ['ts-lint', 'ts-compile']);
+gulp.task('ts-build', ['ts-lint', 'ts-compile']);
+
+gulp.task('watch', function() {
+  gulp.watch([cfg.tsIn], ['ts-build']);
+});
+
+gulp.task('serve', ['watch'], function() {
+  var server = gls.static('build', 8080);
+  server.start();
+
+  gulp.watch(['build/**/*.js', 'build/**/*.html'], function (file) {
+    server.notify.apply(server, [file]);
+  });
+});
+
+gulp.task('default', ['serve']);
