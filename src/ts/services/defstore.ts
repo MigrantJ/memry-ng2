@@ -1,8 +1,4 @@
-let defs = [
-  new Def('Apple', 'Apple is not Banana'),
-  new Def('Banana', 'Banana is not Apple'),
-  new Def('Cantaloupe', 'Neither Apple nor Banana')
-]
+import {Injectable} from 'angular2/angular2';
 
 export class Def {
   constructor(title:string, description:string) {
@@ -13,11 +9,18 @@ export class Def {
   public description: string;
 }
 
+let DEFS = [
+  new Def('Apple', 'Apple is not Banana'),
+  new Def('Banana', 'Banana is not Apples'),
+  new Def('Cantaloupe', 'Neither Apple nor Banana')
+];
+
+@Injectable()
 export class DefStore {
   private defs: Def[];
 
   constructor() {
-    this.defs = defs;
+    this.defs = DEFS;
   }
 
   public getAll() {
