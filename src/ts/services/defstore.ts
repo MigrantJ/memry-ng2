@@ -1,18 +1,17 @@
 import {Injectable} from 'angular2/angular2';
 
 export class Def {
-  constructor(title:string, description:string) {
-    this.title = title;
-    this.description = description;
-  }
-  public title: string;
-  public description: string;
+  constructor(
+    public id:number,
+    public title:string,
+    public description:string
+  ) {}
 }
 
 let DEFS = [
-  new Def('Apple', 'Apple is not Banana'),
-  new Def('Banana', 'Banana is not Apples'),
-  new Def('Cantaloupe', 'Neither Apple nor Banana')
+  new Def(1, 'Apple', '<a href="#">Apple</a> is not <deflink d="2">Banana</deflink>'),
+  new Def(2, 'Banana', 'Banana is not Apples'),
+  new Def(3, 'Cantaloupe', 'Neither Apple nor Banana')
 ];
 
 @Injectable()

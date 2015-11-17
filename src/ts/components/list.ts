@@ -5,7 +5,7 @@ import {DefStore} from '../services/defstore';
 @Component({
   selector: 'memry-list',
   template: `
-    <memry-defpanel 
+    <memry-defpanel
       *ng-for="#def of defs"
       [def]="def"
     >
@@ -14,11 +14,9 @@ import {DefStore} from '../services/defstore';
   directives: [CORE_DIRECTIVES, DefPanel]
 })
 export class List {
-  private defStore: DefStore;
   private defs: any[];
 
-  constructor(defStore: DefStore) {
-    this.defStore = defStore;
+  constructor(private defStore: DefStore) {
     this.defs = this.defStore.getAll();
   }
 }

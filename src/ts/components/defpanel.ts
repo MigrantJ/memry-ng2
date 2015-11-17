@@ -1,5 +1,6 @@
 import {Component, Input} from 'angular2/angular2';
 import {Def} from '../services/defstore';
+import {DefLink} from './deflink';
 
 @Component({
   selector: 'memry-defpanel',
@@ -13,7 +14,7 @@ import {Def} from '../services/defstore';
       <span class="hover_only" (click)="removeDef()">Remove</span>
     </div>
   `,
-  directives: []
+  directives: [DefLink]
 })
 export class DefPanel {
   @Input() def: Def;
