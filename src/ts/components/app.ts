@@ -6,7 +6,7 @@ import {List} from './list';
   selector: 'memry',
   template: `
     <memry-header></memry-header>
-    <memry-list></memry-list>
+    <memry-list />
   `,
   directives: [Header, List]
 })

@@ -9,9 +9,9 @@ export class Def {
 }
 
 let DEFS = [
-  new Def(1, 'Apple', '<a href="#">Apple</a> is not <deflink d="2">Banana</deflink>'),
-  new Def(2, 'Banana', 'Banana is not Apples'),
-  new Def(3, 'Cantaloupe', 'Neither Apple nor Banana')
+  new Def(1, 'Apple', '<d l="1">Apple</d> is not <d l="2">Banana</d>'),
+  new Def(2, 'Banana', '<d l="2">Banana</d> is not Apples'),
+  new Def(3, 'Cantaloupe', 'Neither <d l="1">Apple</d> nor <d l="2">Banana</d>')
 ];
 
 @Injectable()
