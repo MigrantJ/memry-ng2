@@ -1,23 +1,26 @@
 'use strict';
 var GulpConfig = function() {
-  var pub = {};
-  pub.build = './build';
-  pub.src = './src';
-  pub.npm = './node_modules';
+  var buildDir = './build',
+      srcDir = './src',
+      npmDir = './node_modules',
+      bsDir = npmDir + '/bootstrap-sass';
 
-  pub.libsIn = [
-    pub.npm + '/systemjs/dist/system.src.js',
-    pub.npm + '/angular2/angular2.js'
-  ]
-  pub.libsOut = pub.build + '/js';
-
-  pub.tsIn = pub.src + '/ts/**/*.ts';
-  pub.tsOut = pub.build + '/js';
-
-  pub.htmlIn = pub.src + '/html/**/*.html';
-  pub.htmlOut = pub.build;
-
-  return pub;
+  return {
+    libsIn: [
+      npmDir + '/systemjs/dist/system.src.js',
+      npmDir + '/angular2/angular2.js'
+    ],
+    libsOut: buildDir + '/js',
+    tsIn: srcDir + '/ts/**/*.ts',
+    tsOut: buildDir + '/js',
+    htmlIn: srcDir + '/html/**/*.html',
+    htmlOut: buildDir,
+    cssIn: srcDir + '/sass/app.scss',
+    cssOut: buildDir + '/css',
+    bootstrapSass: bsDir + '/assets/stylesheets',
+    fontsIn: bsDir + '/assets/fonts/**/*',
+    fontsOut: buildDir + '/fonts'
+  };
 };
 
 module.exports = GulpConfig();

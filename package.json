@@ -13,9 +13,11 @@
     "systemjs": "^0.19.5"
   },
   "devDependencies": {
+    "bootstrap-sass": "^3.3.5",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-live-server": "0.0.29",
+    "gulp-sass": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^3.5.0",
     "gulp-typescript": "^2.9.2",
