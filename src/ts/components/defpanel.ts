@@ -1,24 +1,55 @@
-import {Component, Input} from 'angular2/angular2';
+import {Component, Input, NgIf} from 'angular2/angular2';
+import {DefDisplay} from './defdisplay';
 import {Def} from '../services/defstore';
 
 @Component({
   selector: 'memry-defpanel',
   template: `
-    <span class="def-title">Def: {{def.title}}</span>
-    <div class="def-description" [inner-html]="def.description" (click)="descriptionClick($event.target)"></div>
-    <div class="def_options">
-      <span class="hover_only" (click)="turnOnEditMode()">Edit</span>
-      <span class="hover_only" (click)="removeDef()">Remove</span>
-    </div>
+    <article class="definition" id=def{{def.id}}>
+      <defdisplay
+        *ng-if="!isEditMode"
+        [def] = "def"
+        (toggle) = "toggleEditMode()"
+      />
+      <div *ng-if="isEditMode" (dblclick)="turnOffEditMode()">
+        <input
+            name="title"
+            class="title-input"
+            [(value)]="def.title"
+            type="text"
+        />
+        <textarea
+            name="description"
+            placeholder="Describe '{{def.title}}' here..."
+            class="description-input"
+            [rows]="getDescRows()"
+            maxlength="1024"
+            required
+            [(value)]="def.description"
+            (keyup.enter)="submitDef()"
+        ></textarea>
+        <div class="def_options">
+            <span (click)="turnOffEditMode()">Cancel</span>
+            <span (click)="submitDef()">Submit</span>
+        </div>
+      </div>
+    </article>
   `,
-  directives: []
+  directives: [NgIf, DefDisplay]
 })
 export class DefPanel {
   @Input() def: Def;
+  isEditMode: boolean = false;
 
-  descriptionClick(target: Element) {
-    if (target.tagName === 'D') {
-      console.log(target.attributes['l'].value);
-    }
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+  }
+
+  getDescRows(): number {
+    return 5;
+  }
+
+  submitDef() {
+    console.log('def submitted');
   }
 }

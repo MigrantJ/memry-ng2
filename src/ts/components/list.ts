@@ -5,11 +5,12 @@ import {Def, DefStore} from '../services/defstore';
 @Component({
   selector: 'memry-list',
   template: `
-    <memry-defpanel
-      *ng-for="#def of defs"
-      [def]="def"
-      id=def{{def.id}}
-    />
+    <section class="center-column" id="def-list-container">
+      <memry-defpanel
+        *ng-for="#def of defs"
+        [def]="def"
+      />
+    </section>
   `,
   directives: [CORE_DIRECTIVES, DefPanel]
 })
