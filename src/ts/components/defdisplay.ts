@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/angular2';
-import {Def} from '../services/defstore';
+import {Def, DefStore} from '../services/defstore';
 
 @Component({
   selector: 'defdisplay',
@@ -20,13 +20,17 @@ export class DefDisplay {
   @Input() def: Def;
   @Output() editClick: EventEmitter<Def> = new EventEmitter<Def>();
 
+  constructor(private defStore: DefStore) {
+
+  }
+
   onEditClick() {
     //noinspection TypeScriptUnresolvedFunction
     this.editClick.next(this.def);
   }
 
   onRemoveClick() {
-    console.log('remove');
+    this.defStore.deleteOne(this.def.id);
   }
 
   onDescriptionClick(target: Element) {

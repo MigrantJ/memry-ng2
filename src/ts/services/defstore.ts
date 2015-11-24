@@ -25,4 +25,8 @@ export class DefStore {
   public getAll() {
     return this.defs;
   }
+
+  public deleteOne(id: number) {
+    this.defs.splice(this.defs.findIndex((e) => {return e.id === id}), 1);
+  }
 }
