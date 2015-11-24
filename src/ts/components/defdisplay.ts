@@ -8,19 +8,24 @@ import {Def} from '../services/defstore';
     <div
       class="def-description ellipsis"
       [inner-html]="def.description"
-      (click)="descriptionClick($event.target)">
+      (click)="onDescriptionClick($event.target)">
     </div>
     <div class="def_options">
-      <span class="hover_only" (click)="toggle()">Edit</span>
+      <span class="hover_only" (click)="onEditClick()">Edit</span>
       <span class="hover_only" (click)="removeDef()">Remove</span>
     </div>
   `
 })
 export class DefDisplay {
   @Input() def: Def;
-  @Output() toggle = new EventEmitter();
+  @Output() editClick: EventEmitter<Def> = new EventEmitter<Def>();
 
-  descriptionClick(target: Element) {
+  onEditClick() {
+    //noinspection TypeScriptUnresolvedFunction
+    this.editClick.next(this.def);
+  }
+
+  onDescriptionClick(target: Element) {
     if (target.tagName === 'D') {
       console.log(target.attributes['l'].value);
     }
