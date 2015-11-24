@@ -12,7 +12,7 @@ import {Def} from '../services/defstore';
     </div>
     <div class="def_options">
       <span class="hover_only" (click)="onEditClick()">Edit</span>
-      <span class="hover_only" (click)="removeDef()">Remove</span>
+      <span class="hover_only" (click)="onRemoveClick()">Remove</span>
     </div>
   `
 })
@@ -23,6 +23,10 @@ export class DefDisplay {
   onEditClick() {
     //noinspection TypeScriptUnresolvedFunction
     this.editClick.next(this.def);
+  }
+
+  onRemoveClick() {
+    console.log('remove');
   }
 
   onDescriptionClick(target: Element) {

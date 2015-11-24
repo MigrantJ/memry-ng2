@@ -6,7 +6,13 @@ import {Def} from '../services/defstore';
 @Component({
   selector: 'memry-defpanel',
   template: `
-    <article class="definition" id=def{{def.id}}>
+    <article
+      class="definition"
+      [class.definition_hover]="isMouseOver"
+      id=def{{def.id}}
+      (mouseover)="isMouseOver = true"
+      (mouseout)="isMouseOver = false"
+    >
       <defdisplay
         *ng-if="!isEditMode"
         [def] = "def"
@@ -24,6 +30,7 @@ import {Def} from '../services/defstore';
 export class DefPanel {
   @Input() def: Def;
   isEditMode: boolean = false;
+  isMouseOver: boolean;
 
   toggleEditMode() {
     this.isEditMode = !this.isEditMode;
